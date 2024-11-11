@@ -33,46 +33,36 @@ def upload_task():
 
 def check_build_status():
     print("::info::Checking the build status")
-    attempt = 0
-    while attempt < BUILD_CHECK_MAX_ATTEMPTS:
-        status_response = requests.get(f"{TASKS_API}/{input_id}", headers={"Devskiller-Api-Key": input_api_key})
-        
+    for _ in range(BUILD_CHECK_MAX_ATTEMPTS):
+        status_response = requests.get(f"{TASKS_API}/{input_id}", headers={"Devskiller-Api-Key": input_api_key})       
         if status_response.status_code == 200:
             status_data = status_response.json()
             if status_data.get('buildStatus') is not None:
                 print(f"::info::Build status is: {status_data.get('buildStatus')}")
                 return status_data
+            time.sleep(10)  
         else:
             print(f"::error::Build status check failed with status code: {status_response.status_code}, response: {status_response.text}")
             exit(1)
-        
-        attempt += 1
-        time.sleep(10)  
-        
+                 
     print("::error::Timeout waiting for build status")
     exit(1)
 
-def get_test_result_emoji(test_result):
-   return "✅" if test_result == "PASS" else "❌"
+def format_summary_test_section(section_name, test_data):
+    markdown = f"\n\n### {section_name}\n"
+    for test_suite, tests in test_data.items():
+        markdown += f"- {test_suite}:\n"
+        for test_name, test_result in tests.items():
+            markdown += f"  - {test_name}: **{'✅' if test_result == 'PASS' else '❌'}**\n"
+    return markdown
 
 def write_summary(status_data):
     with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
-        markdown = f"## Build Status: **{status_data.get('buildStatus')}** {'✅' if status_data.get('buildStatus') == 'TEST_FAILURE' else '❌'}\n---"
-
-        markdown += "\n\n### Candidate Tests\n"
-        for test_suite, tests in status_data.get('candidateTests', {}).items():
-            markdown += f"- {test_suite}:\n"
-            for test_name, test_result in tests.items():
-                markdown += f"  - {test_name}: **{get_test_result_emoji(test_result)}**\n"
-
-        markdown += "\n\n### Verification Tests\n"
-        for test_suite, tests in status_data.get('verificationTests', {}).items():
-            markdown += f"- {test_suite}:\n"
-            for test_name, test_result in tests.items():
-               markdown += f"  - {test_name}: {get_test_result_emoji(test_result)}\n"    
-                   
+        markdown = f"## Build Status: {status_data.get('buildStatus')} {'✅' if status_data.get('buildStatus') == 'TEST_FAILURE' else '❌'}\n---"
+        markdown += format_summary_test_section("Candidate Tests", status_data.get('candidateTests', {}))
+        markdown += format_summary_test_section("Verification Tests", status_data.get('verificationTests', {}))                   
         f.write(markdown)
-
+        
 def verify_build_status(status_data):
     if status_data.get('buildStatus') != 'TEST_FAILURE':
         print("::error::The initial state of the task should be compiling, but with broken tests")
@@ -86,7 +76,6 @@ def publish_task():
     print(f"::info::Publishing the task with ID: {input_id}")
     response = requests.post(
         f"{TASKS_API}/{input_id}/publish",
-        None,
         headers={"Devskiller-Api-Key": input_api_key},
     )
 
