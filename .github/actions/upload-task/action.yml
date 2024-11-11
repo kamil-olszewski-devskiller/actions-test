@@ -9,9 +9,6 @@ inputs:
   api_key:
     description: "TalentScore API key"
     required: true
-  github_token:
-    description: "GitHub token to allow posting the build status on the commit"
-    required: false
   id:
     description: "The ID of the programming task to upload"
     required: true

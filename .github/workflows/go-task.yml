@@ -15,6 +15,5 @@ jobs:
         uses: ./.github/actions/upload-task
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          id: d7c3b566-ef7e-4109-8420-fcb64fa930ef
+          id:  fe3217a6-e085-47dd-afff-025be5355d87 
           path: ./gotask
