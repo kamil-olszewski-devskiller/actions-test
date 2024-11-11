@@ -1,0 +1,19 @@
+name: go task
+
+on:
+  push:
+    branches: 
+      - master
+    
+jobs:
+  zip-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: upload and publish task
+        uses: ./.github/actions/upload-task.yml
+        with:
+          api_key: ${{ secrets.DEVSKILLER_API_KEY }}
+          id: d7c3b566-ef7e-4109-8420-fcb64fa930ef
+          path: ./gotask

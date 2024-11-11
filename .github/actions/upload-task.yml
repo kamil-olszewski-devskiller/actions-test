@@ -1,0 +1,35 @@
+name: Upload task
+description: Uploads a task to the TalentScore platform
+author: DevSkiller
+
+inputs:
+  api_key:
+    description: "TalentScore API key"
+  github_token:
+    description: "GitHub token to allow posting the build status on the commit"
+    required: false
+  id:
+    description: "The ID of the programming task to upload"
+    required: true
+  path:
+    description: "The path of the programming task directory to upload"
+    required: true
+  publish:
+    description: "Whether to publish the task if it builds successfully"
+    required: false
+    default: true
+
+runs: 
+  using: "composite"
+  steps:
+    - name: Zip the directory
+      run: zip -r task.zip "${{inputs.path}}"
+
+    - name: Upload the task
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ inputs.github_token }}
+        script: | 
+          const fs = require('fs');
+          const axios = require('axios');
+          console.log(fs.statSync('task.zip').size);
