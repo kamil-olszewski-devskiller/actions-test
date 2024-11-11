@@ -23,6 +23,7 @@ runs:
   using: "composite"
   steps:
     - name: Zip the directory
+      shell: bash
       run: zip -r task.zip "${{inputs.path}}"
 
     - name: Upload the task

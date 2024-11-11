@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: upload and publish task
-        uses: ./.github/actions/upload-task.yml
+        uses: ./.github/actions/upload-task
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           id: d7c3b566-ef7e-4109-8420-fcb64fa930ef
           path: ./gotask
