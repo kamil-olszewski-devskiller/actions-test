@@ -52,21 +52,25 @@ def check_build_status():
     print("::error::Timeout waiting for build status")
     exit(1)
 
+def get_test_result_emoji(test_result):
+   return "✅" if test_result == "PASS" else "❌"
+
 def write_summary(status_data):
     with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
-        markdown = f"""
-## Build Status: **{status_data.get('buildStatus')}**
-### Candidate Tests
-"""
+        markdown = f"## Build Status: **{status_data.get('buildStatus')}** {'✅' if status_data.get('buildStatus') == 'TEST_FAILURE' else '❌'}\n---"
+
+        markdown += "\n\n### Candidate Tests\n"
         for test_suite, tests in status_data.get('candidateTests', {}).items():
             markdown += f"- {test_suite}:\n"
             for test_name, test_result in tests.items():
-                markdown += f"  - {test_name}: **{test_result}**\n"
+                markdown += f"  - {test_name}: **{get_test_result_emoji(test_result)}**\n"
+
         markdown += "\n\n### Verification Tests\n"
         for test_suite, tests in status_data.get('verificationTests', {}).items():
             markdown += f"- {test_suite}:\n"
             for test_name, test_result in tests.items():
-                markdown += f"  - {test_name}: **{test_result}**\n"
+               markdown += f"  - {test_name}: {get_test_result_emoji(test_result)}\n"    
+                   
         f.write(markdown)
 
 def verify_build_status(status_data):
