@@ -58,7 +58,7 @@ def format_summary_test_section(section_name, test_data):
 
 def write_summary(status_data):
     with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
-        markdown = f"## Build Status: {status_data.get('buildStatus')} {'✅' if status_data.get('buildStatus') == 'TEST_FAILURE' else '❌'}\n---"
+        markdown = f"## Build Status: {status_data.get('buildStatus')} {'✅' if status_data.get('buildStatus') == 'TEST_FAILURE' else '❌'}"
         markdown += format_summary_test_section("Candidate Tests", status_data.get('candidateTests', {}))
         markdown += format_summary_test_section("Verification Tests", status_data.get('verificationTests', {}))                   
         f.write(markdown)
