@@ -11,9 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: upload and publish task
-        uses: ./.github/actions/upload-task
+      - uses: Devskiller/talentscore-upload-task-action@v1.0.0-alpha.1
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY }}
-          id:  fe3217a6-e085-47dd-afff-025be5355d87 
+          id:   9f921ba4-df65-46fc-99f7-6cec996299c3  
           path: ./gotask
