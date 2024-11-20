@@ -1,4 +1,4 @@
-name: go task
+name: import task
 
 on:
   workflow_dispatch:
@@ -12,8 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Devskiller/talentscore-upload-task-action@v1.0.0
+      - uses: ./.github/actions/import-yaml
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY }}
-          id:   9f921ba4-df65-46fc-99f7-6cec996299c3  
-          path: ./gotask
+          path: ./tasks.yml

@@ -1,0 +1,21 @@
+- uuid: 33a6dbd6-0a38-4ba5-a709-0561ccf4a9c2  
+  title: sample essay
+  difficulty: EASY
+  tags: [Java, Multithreading]
+  question: What is the purpose of the *join()* method in Java?
+  type: ESSAY
+  action: PUBLISH
+
+- uuid: 33a6dbd6-0a38-4ba5-a709-0561ccf4a9c1  
+  title: sample mcq
+  difficulty: EASY
+  tags: [Java, Multithreading]
+  question: |-
+    What is the purpose of the *join()* method in Java?
+  type: MULTI_CHOICE
+  mode: SINGLE
+  choices:
+    - wrong: Running two threads simultaneously.
+    - correct: Waiting for the thread to finish.
+    - wrong: Merging thread results into a list.
+
