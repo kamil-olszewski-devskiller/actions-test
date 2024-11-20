@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/import-yaml
+      - uses: Devskiller/talentscore-import-yaml-action@v1.0.0
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY_STAGE }}
           path: ./tasks.yml
