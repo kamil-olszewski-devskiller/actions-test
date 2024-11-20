@@ -1,7 +1,7 @@
 import os
 import requests
 
-TASKS_API = "https://api.stage.devskiller.com/tasks"
+TASKS_API = "https://api.stage-devskiller.com/tasks"
 
 input_api_key = os.environ["INPUT_API_KEY"]
 input_path = os.environ["INPUT_PATH"]
