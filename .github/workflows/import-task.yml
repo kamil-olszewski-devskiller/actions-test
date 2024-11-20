@@ -7,7 +7,7 @@ on:
       - master
     
 jobs:
-  zip-and-upload:
+  import-yaml:
     runs-on: ubuntu-latest
 
     steps:
