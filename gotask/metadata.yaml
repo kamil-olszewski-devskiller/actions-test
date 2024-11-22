@@ -1,0 +1,9 @@
+uuid:  aee4af94-5709-4917-8dcf-fa54b91f83cf
+title: GitHub action GoLang task
+type: PROGRAMMING
+difficulty: EASY
+tags: ['Go', 'GitHub']
+points: 10
+duration: PT1H
+projectType: GOLANG
+projectTypeVersion: GOLANG122
