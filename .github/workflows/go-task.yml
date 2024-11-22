@@ -17,5 +17,5 @@ jobs:
           PLATFORM_URL: https://api.stage-devskiller.com
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY_STAGE }}
-          id:  aee4af94-5709-4917-8dcf-fa54b91f84cf
+          #id:  aee4af94-5709-4917-8dcf-fa54b91f84cf
           path: ./gotask
