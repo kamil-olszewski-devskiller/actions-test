@@ -1,6 +1,6 @@
 {
   "verification" : {
-    "testNamePatterns" : [".*verify_pack.*"],
+    "testNamePatterns" : [".*Verify.*"],
     "pathPatterns" : ["**verify_pack/**"]
   }
 }
