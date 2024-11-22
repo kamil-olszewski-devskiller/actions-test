@@ -7,7 +7,7 @@
   action: PUBLISH
 
 - uuid: 33a6dbd6-0b39-4ba5-a709-0561ccf4a9c1  
-  titlae: sample mcq import
+  title: sample mcq import
   difficulty: EASY
   tags: [Java, Multithreading]
   question: |-
