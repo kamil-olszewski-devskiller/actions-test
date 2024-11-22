@@ -8,22 +8,22 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func VerifyTestAddition_Assessment(t *testing.T) {
+func TestVerifyAddition_Assessment(t *testing.T) {
 	total := calculator.Add(-1, -1)
 	assert.EqualValues(t, -2, total, "add result was incorrect, got: %v, expected: %v.", total, -2)
 }
 
-func VerifyTestSubtraction_Assessment(t *testing.T) {
+func TestVerifySubtraction_Assessment(t *testing.T) {
 	total := calculator.Subtract(2, -1)
 	assert.EqualValues(t, 3, total, "subtraction result was incorrect, got: %v, expected: %v.", total, 3)
 }
 
-func VerifyTestMultiplicationByZero_Assessment(t *testing.T) {
+func TestVerifyMultiplicationByZero_Assessment(t *testing.T) {
 	total := calculator.Multiply(2, 0)
 	assert.EqualValues(t, 0, total, "multiplication by 0 result was incorrect, got: %v, expected: %v.", total, 0)
 }
 
-func VerifyTestDivisionByZero_Assessment(t *testing.T) {
+func TestVerifyDivisionByZero_Assessment(t *testing.T) {
 	total := calculator.Divide(4, 0.0)
 	assert.EqualValues(t, math.Inf(1), total, "division by 0 result was incorrect, got: %v, expected: %v.", total, math.Inf(1))
 }
