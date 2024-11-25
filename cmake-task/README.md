@@ -1,4 +1,4 @@
-# Devskiller programming task sample - Go
+# Devskiller programming task sample - C++ with CMake
 
 ## Introduction
 
@@ -17,7 +17,7 @@ locally.
 You can check out this short video to see the test from the [candidate's
 perspective](https://devskiller.zendesk.com/hc/en-us/articles/360019534639-How-the-TalentScore-test-looks-like-from-the-candidate-perspective).
 
-This repo contains a sample project for Go and below you can
+This repo contains a sample project for C++ with CMake and below you can
 find a detailed guide for creating your own programming project.
 
 **Please make sure to read our [Getting started with programming
@@ -25,13 +25,15 @@ projects](https://devskiller.zendesk.com/hc/en-us/articles/360019531059-Getting-
 
 ## Technical details
 
-We use [Go mod](https://golang.org/ref/mod) to manage dependencies in Golang programming tasks.
+Any **CMake** project may be used as a programming task. We support the **Google
+Test framework** for unit tests, in addition STL and Boost are available at runtime for
+projects. If you need any other libraries, please, just [let us
+know](mailto:support@devskiller.com).
 
-You project will be built with the following commands:
+The project will be executed with the following command:
 
 ```sh
-go mod tidy
-go test ./... -v -timeout 1m
+cmake . && make clean && make && ctest --force-new-ctest-process
 ```
 
 ## Automatic assessment
@@ -45,7 +47,7 @@ There are two kinds of unit tests:
 1. **Candidate tests** - unit tests that the candidate can see during the test
    should be used only for basic verification and to guide the candidate in
    understanding the requirements of the project. Candidate tests WILL NOT be used
-   to calculate the final score. 
+   to calculate the final score.
 2. **Verification tests** - unit tests that the candidate can’t see during the
    test. Files containing verification tests will be added to the project after
    the candidate finishes the test and will be executed during the verification
@@ -67,8 +69,8 @@ Here is an example project descriptor:
 ```json
 {
   "verification" : {
-    "testNamePatterns" : [".*_Assessment"],
-    "pathPatterns" : ["**verify_pack/**"]
+    "testNamePatterns" : [ "Verification.*" ],
+    "pathPatterns" : [ "test/Verification**" ]
   }
 }
 ```
@@ -95,11 +97,12 @@ To define verification tests, you need to set two configuration properties in
   the verification phase. These files will not be visible to the candidate during
   the test.
 
-In our sample task all verifications tests are located in `verify_pack/*_test.go`
-files and their names end with `_Assessment`. In this case the following
-patterns will be sufficient:
+In our sample project all verification tests are in the
+`VerificationCalculatorTest` class and the class is located in file prefixed
+with `Verification` string, inside `tests` directory. In this case the
+following patterns will be sufficient:
 
 ```json
-"testNamePatterns" : [".*_Assessment"],
-"pathPatterns" : ["**verify_pack/**"]
+"testNamePatterns" : [ "Verification.*" ],
+"pathPatterns" : [ "test/Verification**" ]
 ```

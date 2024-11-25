@@ -1,4 +1,4 @@
-name: go task
+name: programming task
 
 on:
   workflow_dispatch:
@@ -18,4 +18,4 @@ jobs:
         with:
           api_key: ${{ secrets.DEVSKILLER_API_KEY_STAGE }}
           #id:  aee4af94-5709-4917-8dcf-fa54b91f84cf
-          path: ./gotask
+          path: ./cmake-task
