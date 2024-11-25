@@ -1,8 +1,8 @@
 uuid:  aee4ae94-5709-4917-8dde-fa54b91f84cf
-title: github action cmake task
+title: github action cmake task MEDIUM
 type: PROGRAMMING
-difficulty: EASY
+difficulty: MEDIUM
 tags: ['Cmake', 'GitHub']
-points: 10
+points: 20
 duration: PT1H
 projectType: CMAKE

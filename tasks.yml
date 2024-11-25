@@ -1,7 +1,7 @@
 - uuid: 21c24e88-9a80-45e1-aa18-a1327596388f
   title: sample new essay import
-  difficulty: EASY
+  difficulty: MEDIUM
   tags: [Java, Multithreading]
-  question: What is the purpose of the *join()* method in Java?
+  question: What is the actual purpose of the *join()* method in Java?
   type: ESSAY
   action: PUBLISH
