@@ -1,4 +1,4 @@
-name: programming task
+name: leaup
 
 on:
   workflow_dispatch:
@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: cleanup
         run: |
-          sudo du -a -h /path | sort -h -r | head -n 100
+          sudo find / -type f -size +20000k -exec ls -lh {} \; 2> /dev/null   | awk '{ print $NF ": " $5 }'  | sort -hrk 2,2
