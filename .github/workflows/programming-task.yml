@@ -5,17 +5,11 @@ on:
   push:
     branches: 
       - master
-    
-jobs:
-  zip-and-upload:
-    runs-on: ubuntu-latest
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: Devskiller/talentscore-upload-task-action@v1.0.0
-        env:
-          PLATFORM_URL: https://api.stage-devskiller.com
-        with:
-          api_key: ${{ secrets.DEVSKILLER_API_KEY_STAGE }}
-          #id:  aee4af94-5709-4917-8dcf-fa54b91f84cf
-          path: ./cmake-task
+      - name: cleanup
+        run: |
+          sudo du -a -h /path | sort -h -r | head -n 100
